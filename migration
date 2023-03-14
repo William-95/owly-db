@@ -1,0 +1,76 @@
+-- ----------------------------------------------------------------------------
+-- MySQL Workbench Migration
+-- Migrated Schemata: owly-db
+-- Source Schemata: owly_db
+-- Created: Tue Mar 14 17:24:21 2023
+-- Workbench Version: 8.0.31
+-- ----------------------------------------------------------------------------
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------------------------------------------------------
+-- Schema owly-db
+-- ----------------------------------------------------------------------------
+DROP SCHEMA IF EXISTS `owly-db` ;
+CREATE SCHEMA IF NOT EXISTS `owly-db` ;
+
+-- ----------------------------------------------------------------------------
+-- Table owly-db.course
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `owly-db`.`course` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name_course` VARCHAR(255) NOT NULL,
+  `places_available` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+-- ----------------------------------------------------------------------------
+-- Table owly-db.migrations
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `owly-db`.`migrations` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` VARCHAR(255) NOT NULL,
+  `batch` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+-- ----------------------------------------------------------------------------
+-- Table owly-db.personal_access_tokens
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `owly-db`.`personal_access_tokens` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tokenable_type` VARCHAR(255) NOT NULL,
+  `tokenable_id` BIGINT UNSIGNED NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(64) NOT NULL,
+  `abilities` TEXT NULL DEFAULT NULL,
+  `last_used_at` TIMESTAMP NULL DEFAULT NULL,
+  `expires_at` TIMESTAMP NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `personal_access_tokens_token_unique` (`token` ASC) VISIBLE,
+  INDEX `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type` ASC, `tokenable_id` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+-- ----------------------------------------------------------------------------
+-- Table owly-db.subjects
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `owly-db`.`subjects` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `course_id` INT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 99
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+SET FOREIGN_KEY_CHECKS = 1;
