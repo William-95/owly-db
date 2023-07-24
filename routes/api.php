@@ -20,26 +20,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // COURSE
-Route::get('/course',[ApiController::class,'readCourse']);
-Route::post('/course',[ApiController::class,'createCourse']);
-Route::put('/course/{id}',[ApiController::class,'updateCourse']);
-Route::delete('/course/{name_course}',[ApiController::class,'deleteCourse']);
+Route::get('/course',[CourseController::class,'readCourse']);
+Route::post('/course',[CourseController::class,'createCourse']);
+Route::put('/course/{id}',[CourseController::class,'updateCourse']);
+Route::delete('/course/{name_course}',[CourseController::class,'deleteCourse']);
 
 
 // ------------ //----------//--------//-----------//// ------------ //----------//--------//-----------//
 
 
 // SUBJECTS
-Route::get('/subjects',[ApiController::class,'readSubjects']);
-Route::post('/subjects',[ApiController::class,'createSubjects']);
-Route::put('/subjects/{id}',[ApiController::class,'updateSubjects']);
-Route::delete('/subjects/{id}',[ApiController::class,'deleteSubjects']);
+Route::get('/subjects',[SubjectController::class,'readSubjects']);
+Route::post('/subjects',[SubjectController::class,'createSubjects']);
+Route::put('/subjects/{id}',[SubjectController::class,'updateSubjects']);
+Route::delete('/subjects/{id}',[SubjectController::class,'deleteSubjects']);
 
 
 // ------------ //----------//--------//-----------//// ------------ //----------//--------//-----------//
 
 
 // FILTER COURSE
-Route::post('/filter/name={name_course}',[ApiController::class,'filterByName']);
-Route::post('/filter/places={places_vailable}',[ApiController::class,'filterByPlaces']);
-Route::post('/filter/subject={subjects}',[ApiController::class,'filterBySubjects']);
+Route::post('/filter/name={name_course}',[CourseController::class,'filterByName']);
+Route::post('/filter/places={places_vailable}',[CourseController::class,'filterByPlaces']);
+Route::post('/filter/subject={subjects}',[CourseController::class,'filterBySubjects']);
